@@ -6,16 +6,13 @@ import Spinner from '../spinner';
 import './person-details.css';
 
 export default class PersonDetails extends Component {
-    constructor(props) {
-        super(props);
+    swapiService = new SwapiService();
 
-        this.state = {
-            person: null,
-            loading: false
-        }
-
-        this.swapiService = new SwapiService();
+    state = {
+        person: null,
+        loading: false
     }
+
 
     componentDidMount() {
         this.updatePerson();

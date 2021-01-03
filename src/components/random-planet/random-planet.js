@@ -7,22 +7,23 @@ import SwapiService from '../../services/swapi-service';
 import './random-planet.css';
 
 export default class RandomPlanet extends Component {
-    constructor() {
-        super();
+    swapiService = new SwapiService();
 
-        this.state = {
-            planet: {},
-            loading: true,
-            error: false
-        };
+    state = {
+        planet: {},
+        loading: true,
+        error: false
+    };
 
-        this.swapiService = new SwapiService();
-    }
 
     componentDidMount() {
         this.updatePlanet();
 
-        this.interval = setInterval(() => this.updatePlanet(), 1000);
+        this.interval = setInterval(() => this.updatePlanet(), 10000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     onPlanetLoaded(planet) {

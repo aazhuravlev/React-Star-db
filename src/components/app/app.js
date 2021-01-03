@@ -12,9 +12,21 @@ export default class App extends React.Component {
         super(props);
 
         this.state = {
-            selectedPerson: null
-        }
+            showRandomPlanet: true
+        };
+
+        this.toggleRandomPlanet = this.toggleRandomPlanet.bind(this);
+        this.onPersonSelected = this.onPersonSelected.bind(this);
     }
+
+    toggleRandomPlanet() {
+        this.setState((state) => {
+            return {
+                showRandomPlanet: !state.showRandomPlanet
+            }
+        });
+    };
+
     onPersonSelected(id) {
         this.setState({
             selectedPerson: id
@@ -22,16 +34,26 @@ export default class App extends React.Component {
     }
 
     render() {
+        const planet = this.state.showRandomPlanet
+        ? <RandomPlanet/>
+        : null;
+
         return (
             <div className="app">
                 <Header />
-                <RandomPlanet />
+                {planet}
+
+                <button
+                    className="toggle-planet btn btn-warning btn-lg"
+                    onClick={this.toggleRandomPlanet}>
+                    Toggle Random Planet
+                </button>
 
                 <div className="row mb2">
                     <div className="col-md-6">
                         <ItemList onItemSelected={this.onPersonSelected} />
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 d-flex">
                         <PersonDetails personId={this.state.selectedPerson} />
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 export default class SwapiService {
     constructor() {
-        this._apiBase = 'https://swapi.co/api';
+        this._apiBase = 'https://swapi.dev/api';
 
         this._transformPlanet = this._transformPlanet.bind(this);
         this._transformStarship = this._transformStarship.bind(this);
