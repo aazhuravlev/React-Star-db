@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Header from "../header";
 import RandomPlanet from "../random-planet";
 import ErrorBoundry from "../error-boundry";
-import { PeoplePage, StarshipPage, PlanetPage } from "../pages"
+import { PeoplePage, StarshipPage, PlanetPage } from "../pages";
 
 import SwapiService from "../../services/swapi-service";
 import DummySwapiService from "../../services/dummy-swapi-service";

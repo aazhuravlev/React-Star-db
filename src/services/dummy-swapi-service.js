@@ -62,37 +62,37 @@ export default class DummySwapiService {
 
   async getAllPeople() {
     return this._people;
-  };
+  }
 
   async getPerson() {
     return this._people[0];
-  };
+  }
 
   async getAllPlanets() {
     return this._planets;
-  };
+  }
 
   async getPlanet() {
     return this._planets[0];
-  };
+  }
 
   async getAllStarships() {
     return this._starships;
-  };
+  }
 
   async getStarship() {
     return this._starships[0];
-  };
+  }
 
   getPersonImage() {
     return `https://placeimg.com/400/500/people`;
-  };
+  }
 
   getStarshipImage() {
     return `https://placeimg.com/600/400/tech`;
-  };
+  }
 
   getPlanetImage() {
     return `https://placeimg.com/400/400/nature`;
-  };
+  }
 }
