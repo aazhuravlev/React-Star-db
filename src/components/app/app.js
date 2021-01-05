@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Header from "../header";
 import RandomPlanet from "../random-planet";
 import ErrorBoundry from "../error-boundry";
-import { PeoplePage, StarshipPage, PlanetPage } from "../pages";
+import { PeoplePage, StarshipsPage, PlanetsPage } from "../pages";
+import {StarshipDetails} from '../sw-components';
 
 import SwapiService from "../../services/swapi-service";
 import DummySwapiService from "../../services/dummy-swapi-service";
@@ -31,15 +33,23 @@ export default class App extends Component {
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.state.swapiService}>
-          <div className="stardb-app">
-            <Header onServiceChange={this.onServiceChange} />
+          <Router>
+            <div className="stardb-app">
+              <Header onServiceChange={ this.onServiceChange } />
 
-            <RandomPlanet />
+              <RandomPlanet />
 
-            <PeoplePage />
-            <StarshipPage />
-            <PlanetPage />
-          </div>
+              <Route path="/" render={ () => <h2>Welcome to StarDB</h2> } exact />
+              <Route path="/people/:id?" component={ PeoplePage } />
+              <Route path="/planets" component={ PlanetsPage } />
+              <Route path="/starships" component={ StarshipsPage } exact />
+              <Route path="/starships/:id"
+                     render={ ({ match }) => {
+                       const { id } = match.params;
+                       return <StarshipDetails itemId={ id } />;
+                     } } />
+            </div>
+          </Router>
         </SwapiServiceProvider>
       </ErrorBoundry>
     );
